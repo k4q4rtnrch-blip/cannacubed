@@ -144,18 +144,32 @@
     }
 
     .topbar-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;              /* remove extra top/bottom padding */
+  height: 110px;                /* match topbar height */
+  display: flex;
+  justify-content: space-between; /* logo left, links right */
+  align-items: center;           /* vertically center everything */
+}
 
-    .nav-logo img {
-      height: 80px;
-      width: auto;
-    }
+.nav-logo img {
+  height: 80px;                 /* adjust logo height */
+  width: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;          /* vertically center links */
+}
 
     
 .nav-links a {
