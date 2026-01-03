@@ -157,18 +157,29 @@
       width: auto;
     }
 
-    .nav-links a {
-  color: #ffffff; /* make all nav links white */
-  text-decoration: none;
-  border-bottom: none; /* remove underline if you want */
+    
+.nav-links a {
+  color: #ffffff;                /* always white */
+  text-decoration: none;          /* remove default underline */
+  position: relative;             /* needed for pseudo-element */
+  padding-bottom: 4px;            /* space for underline */
 }
 
-.nav-links a:hover {
-  color: #ffffff; /* keep white on hover */
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ffffff;           /* underline color */
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
+.nav-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
 
     /* Responsive */
     @media (max-width: 900px) {
