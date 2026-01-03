@@ -157,20 +157,18 @@
       width: auto;
     }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 32px;
-      margin: 0;
-      padding: 0;
-    }
+    .nav-links a {
+  color: #ffffff; /* make all nav links white */
+  text-decoration: none;
+  border-bottom: none; /* remove underline if you want */
+}
 
-    .nav-links a:hover {
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: none;
-    }
+.nav-links a:hover {
+  color: #ffffff; /* keep white on hover */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 
     /* Responsive */
     @media (max-width: 900px) {
