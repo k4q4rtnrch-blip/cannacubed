@@ -1,240 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Canna3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Canna³</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
     :root {
-      --bg: #f4f5f7;
-      --fg: #0a0a0a;
-      --muted: #5f6368;
-      --accent: #000000;
-      --border: #c9ccd1;
+      --bg: #050505;
+      --fg: #f5f5f5;
+      --muted: #9aa0a6;
+      --accent: #00ffd5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.55;
-      background: var(--bg);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #0b0b0b, #000000);
       color: var(--fg);
+      line-height: 1.6;
     }
 
     a {
       color: var(--fg);
       text-decoration: none;
-      border-bottom: 1px solid #444;
-    }
-    a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      position: relative;
     }
 
-    .wrap {
-      max-width: 1100px;
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    /* NAV */
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 96px;
+      backdrop-filter: blur(14px);
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+    }
+
+    .topbar-inner {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 140px 24px 90px;
+      height: 100%;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
+    .nav-logo img {
+      height: 64px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* WRAP */
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 180px 32px 120px;
+    }
+
+    /* HERO */
     header {
       text-align: center;
-      padding-bottom: 120px;
+      padding-bottom: 160px;
     }
 
-    header .hero-frame {
-  display: inline-block;
-  margin-bottom: 40px;
-  border: none;
-  background: transparent;
-  padding: 0;
-}
+    .hero-video {
+      max-width: 960px;
+      margin: 0 auto 80px;
+    }
 
-  header .hero-frame video {
-  max-width: 90vw;
-  height: auto;
-  display: block;
-}
+    .hero-video video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
 
     header h1 {
-      font-size: clamp(42px, 7vw, 84px);
-      margin: 0 0 20px;
-      letter-spacing: -1px;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
     }
 
     header p {
-      max-width: 520px;
+      max-width: 620px;
       margin: 0 auto;
       color: var(--muted);
       font-size: 18px;
     }
 
+    /* SECTIONS */
     section {
-      padding: 120px 0;
+      padding: 160px 0;
     }
 
     section h2 {
-      font-size: 14px;
-      letter-spacing: 2px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 40px;
-      text-align: center;
+      margin-bottom: 80px;
     }
 
-    .two-col, .three-col, .cannabinoids-grid {
+    /* GRID */
+    .two-col,
+    .three-col,
+    .cannabinoids-grid {
       display: grid;
-      gap: 60px;
+      gap: 80px;
     }
 
     .two-col {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .two-col p {
-      max-width: 480px;
-      font-size: 18px;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .three-col {
       grid-template-columns: repeat(3, 1fr);
-    }
-
-    .step, .cannabinoid {
-      padding-top: 20px;
-      border-top: 1px solid #222;
-    }
-
-    .step span, .cannabinoid span {
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 2px;
-    }
-
-    .step h3, .cannabinoid h3 {
-      margin: 12px 0 10px;
-      font-size: 20px;
-    }
-
-    footer {
-      padding: 80px 0 40px;
-      color: var(--muted);
-      font-size: 14px;
       text-align: center;
     }
 
-    /* Topbar */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 110px;
-      background: #0b0b0b;
-      border-bottom: 1px solid #222;
-      z-index: 9999;
+    .two-col p {
+      font-size: 20px;
+      max-width: 480px;
     }
 
-    .topbar-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;              /* remove extra top/bottom padding */
-  height: 110px;                /* match topbar height */
-  display: flex;
-  justify-content: space-between; /* logo left, links right */
-  align-items: center;           /* vertically center everything */
-}
+    /* CARDS */
+    .cannabinoids-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
-.nav-logo img {
-  height: 80px;                 /* adjust logo height */
-  width: auto;
-}
+    .cannabinoid {
+      padding-top: 24px;
+      position: relative;
+    }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-  margin: 0;
-  padding: 0;
-}
+    .cannabinoid::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
 
-.nav-links li {
-  display: flex;
-  align-items: center;          /* vertically center links */
-}
+    .cannabinoid span {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+    }
 
-    
-.nav-links a {
-  color: #ffffff;                /* always white */
-  text-decoration: none;          /* remove default underline */
-  position: relative;             /* needed for pseudo-element */
-  padding-bottom: 4px;            /* space for underline */
-}
+    .cannabinoid h3 {
+      margin: 16px 0 12px;
+      font-size: 20px;
+      font-weight: 500;
+    }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #ffffff;           /* underline color */
-  transition: width 0.3s ease, left 0.3s ease;
-}
+    .cannabinoid p {
+      font-size: 15px;
+      color: var(--muted);
+    }
 
-.nav-links a:hover::after {
-  width: 100%;
-  left: 0;
-}
+    /* MEDIA */
+    #media p {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: var(--muted);
+    }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-  .topbar {
-    height: auto;
-  }
+    .insta-follow {
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
 
-  .topbar-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 80px 0 40px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
 
-  .nav-links {
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .two-col,
+      .three-col,
+      .cannabinoids-grid {
+        grid-template-columns: 1fr;
+      }
 
-  .nav-logo img {
-    height: 44px;
-  }
-
-  .wrap {
-    padding-top: 160px;
-  }
-}
-
+      .wrap {
+        padding-top: 160px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Navigation -->
   <nav class="topbar">
     <div class="topbar-inner">
       <div class="nav-logo">
-        <img src="assets/ccubed-logo2.png" alt="Canna Cubed Logo">
+        <img src="assets/ccubed-logo2.png" alt="Canna Cubed Logo" />
       </div>
       <ul class="nav-links">
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#cannabinoids">Cannabinoids</a></li>
         <li><a href="#extraction">Extraction</a></li>
         <li><a href="#media">Media</a></li>
@@ -243,74 +258,80 @@
   </nav>
 
   <main class="wrap">
-    <!-- Hero -->
     <header>
-      <div class="hero-frame">
-  <video autoplay muted loop playsinline>
-    <source src="assets/c3-coveranimation.mp4" type="video/mp4">
-  </video>
-</div>
-     <h1>Canna Cubed</h1>
-<p class="hero-sub">COMING SOON</p>
-      <p>Hemp for modern lifestyles<br>UK manufactured • More than just CBD • Ethical sourcing</p>
+      <div class="hero-video">
+        <video autoplay muted loop playsinline>
+          <source src="assets/c3-coveranimation.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <h1>Canna³</h1>
+      <div class="hero-sub">Coming Soon</div>
+      <p>
+        Hemp engineered for modern lifestyles.<br />
+        UK manufactured • Ethical sourcing • Beyond CBD
+      </p>
     </header>
 
-    <!-- About Us -->
     <section id="about">
-      <h2>About Us</h2>
+      <h2>About</h2>
       <div class="two-col">
-        <p>Think INSIDE The Box</p>
-        <p>We want to redefine hemp and the way people see its usefulness. Our products are specifically formulated to target pain, gut health, stress, and anxiety with the added benefit of a slight pep in your step!</p>
+        <p>Think inside the box.</p>
+        <p>
+          We engineer compliant cannabinoids to support pain management, gut health,
+          stress reduction, and mental clarity — without compromise.
+        </p>
       </div>
     </section>
 
-    <!-- Cannabinoids -->
     <section id="cannabinoids">
-      <h2>Our Compliant Cannabinoids</h2>
+      <h2>Compliant Cannabinoids</h2>
       <div class="cannabinoids-grid">
         <div class="cannabinoid">
           <span>CBD</span>
           <h3>Cannabidiol</h3>
-          <p>A non-intoxicating cannabinoid widely studied for balance and everyday wellness.</p>
+          <p>Balance-focused, non-intoxicating, clinically explored.</p>
         </div>
         <div class="cannabinoid">
           <span>CBC</span>
           <h3>Cannabichromene</h3>
-          <p>A minor cannabinoid gaining attention for its potential synergistic effects.</p>
+          <p>Synergistic cannabinoid with emerging research.</p>
         </div>
         <div class="cannabinoid">
           <span>CBG</span>
           <h3>Cannabigerol</h3>
-          <p>A foundational cannabinoid from which many others are biosynthesised.</p>
+          <p>The molecular foundation of many cannabinoids.</p>
         </div>
         <div class="cannabinoid">
           <span>CBN</span>
           <h3>Cannabinol</h3>
-          <p>A mildly active cannabinoid formed as THC naturally degrades over time.</p>
+          <p>Formed through natural cannabinoid oxidation.</p>
         </div>
       </div>
     </section>
 
-    <!-- Extraction -->
     <section id="extraction">
-      <h2>Extraction Method</h2>
+      <h2>Extraction</h2>
       <div class="three-col">
-        <p>CO₂ extraction (gold standard)</p>
+        <p>Supercritical CO₂ extraction</p>
         <p>Solvent-free processing</p>
-        <p>No residuals and eco-friendly practices!</p>
+        <p>Clean, sustainable, and precise</p>
       </div>
     </section>
 
-    <!-- Media -->
     <section id="media">
       <h2>Media</h2>
-      <p>Follow us for updates on compounds, lab insights, and next-gen hemp innovation.</p>
-      <div class="insta-grid" id="insta-grid"></div>
-      <p class="insta-follow"><a href="https://instagram.com/canna3cubed" target="_blank">@canna3cubed</a></p>
+      <p>
+        Follow our journey as we explore cannabinoid science, formulation, and
+        next-generation hemp products.
+      </p>
+      <div class="insta-follow">
+        <a href="https://instagram.com/canna3cubed" target="_blank">@canna3cubed</a>
+      </div>
     </section>
 
     <footer>
-      © Canna<sup>3</sup>
+      © Canna³
     </footer>
   </main>
 </body>
