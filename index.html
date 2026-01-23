@@ -123,16 +123,20 @@
       top: 6px;
     }
 
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 96px;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(14px);
-      padding: 24px 32px;
-    }
+   .mobile-menu {
+  display: none;
+  position: absolute;
+  top: 96px;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(14px);
+  padding: 24px 32px;
+}
+
+.mobile-menu.open {
+  display: block;
+}
 
     .mobile-menu ul {
       list-style: none;
@@ -142,6 +146,14 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+    const menuLinks = document.querySelectorAll(".mobile-menu a");
+
+menuLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+  });
+});
+    
 
     /* WRAP */
     .wrap {
