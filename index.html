@@ -84,6 +84,65 @@
       text-transform: uppercase;
     }
 
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--muted);
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--fg);
+      position: relative;
+    }
+
+    .hamburger span::before,
+    .hamburger span::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 2px;
+      background: var(--fg);
+      left: 0;
+    }
+
+    .hamburger span::before {
+      top: -6px;
+    }
+
+    .hamburger span::after {
+      top: 6px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 96px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(14px);
+      padding: 24px 32px;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     /* WRAP */
     .wrap {
       max-width: 1200px;
@@ -169,7 +228,7 @@
 
     /* CARDS */
     .cannabinoids-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .cannabinoid {
@@ -202,6 +261,18 @@
     .cannabinoid p {
       font-size: 15px;
       color: var(--muted);
+    }
+
+    /* SUPPORT COPY */
+    .support-copy {
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .support-copy p {
+      margin-bottom: 24px;
     }
 
     /* MEDIA */
@@ -238,6 +309,18 @@
       .wrap {
         padding-top: 160px;
       }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -248,7 +331,21 @@
       <div class="nav-logo">
         <img src="assets/ccubed-logo2.png" alt="Canna Cubed Logo" />
       </div>
+
       <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#cannabinoids">Cannabinoids</a></li>
+        <li><a href="#extraction">Extraction</a></li>
+        <li><a href="#media">Media</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#cannabinoids">Cannabinoids</a></li>
         <li><a href="#extraction">Extraction</a></li>
@@ -276,32 +373,51 @@
     <section id="about">
       <h2>About</h2>
       <div class="two-col">
-        <p>Think inside the box.</p>
         <p>
-          We engineer compliant cannabinoids to support pain management, gut health,
-          stress reduction, and mental clarity — without compromise.
+          The UK CBD vape market is crowded with weak, CBD-only products dressed up as premium — expensive formulas that don’t deliver. Canna Cubed was built for the modern urban lifestyle, engineered for people moving through late nights, early mornings, and everything in between. Instead of relying on CBD alone, we use a balanced cannabinoid blend of CBD, CBG and CBC, each chosen for how it supports everyday wellbeing. CBD forms the foundation for calm and balance, CBG adds structure and clarity for focus and mental sharpness, and CBC complements the blend to support a more rounded, consistent experience. Designed and manufactured in the UK, Canna Cubed CBD vapes are discreet, refined, and made for the fast pace of modern life — minimal design, intentional formulation, and a presence that doesn’t need to shout.
         </p>
+        <p>Think inside the box.</p>
       </div>
     </section>
 
     <section id="cannabinoids">
       <h2>Compliant Cannabinoids</h2>
+
       <div class="cannabinoids-grid">
         <div class="cannabinoid">
           <span>CBD</span>
           <h3>Cannabidiol</h3>
           <p>Balance-focused, non-intoxicating, clinically explored.</p>
         </div>
-        <div class="cannabinoid">
-          <span>CBC</span>
-          <h3>Cannabichromene</h3>
-          <p>Synergistic cannabinoid with emerging research.</p>
-        </div>
+
         <div class="cannabinoid">
           <span>CBG</span>
           <h3>Cannabigerol</h3>
           <p>The molecular foundation of many cannabinoids.</p>
         </div>
+
+        <div class="cannabinoid">
+          <span>CBC</span>
+          <h3>Cannabichromene</h3>
+          <p>Synergistic cannabinoid with emerging research.</p>
+        </div>
+      </div>
+
+      <div class="support-copy">
+        <p><strong>Support for stress & relaxation</strong><br>
+        Canna Cubed CBD vapes are formulated to support calm and relaxation, helping you switch off after a long day. Our CBD, CBG and CBC blend is designed to fit modern life — whether you’re unwinding at home or moving through a busy schedule.</p>
+
+        <p><strong>Support for focus & mental clarity</strong><br>
+        When you need to stay sharp, our blend is engineered for clarity and focus. The combination of CBD, CBG and CBC provides a more rounded cannabinoid profile that supports mental performance and everyday productivity.</p>
+
+        <p><strong>Support for sleep & evening routine</strong><br>
+        For those looking to support a better evening routine, Canna Cubed offers a smooth, balanced cannabinoid blend that supports calm and a more grounded nighttime experience. Designed for discreet, consistent use when the day is done.</p>
+
+        <p><strong>Support for mood & wellbeing</strong><br>
+        Canna Cubed is built around a complete cannabinoid profile to support overall wellbeing and daily balance. Our CBD, CBG and CBC blend is designed to complement modern lifestyles without overcomplication or hype.</p>
+
+        <p><strong>Support for recovery & post-activity calm</strong><br>
+        Whether you’ve finished training, a long shift, or a busy day, Canna Cubed can help support recovery routines with a blend designed for consistency and calm. CBD, CBG and CBC work together for a smoother cannabinoid experience.</p>
       </div>
     </section>
 
@@ -317,8 +433,7 @@
     <section id="media">
       <h2>Media</h2>
       <p>
-        Follow our journey as we explore cannabinoid science, formulation, and
-        next-generation hemp products.
+        Follow our journey as we explore cannabinoid science, formulation, and next-generation hemp products.
       </p>
       <div class="insta-follow">
         <a href="https://instagram.com/canna3cubed" target="_blank">@canna3cubed</a>
@@ -329,5 +444,15 @@
       © Canna³
     </footer>
   </main>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+    });
+  </script>
 </body>
 </html>
+
